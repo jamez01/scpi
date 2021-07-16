@@ -1,21 +1,20 @@
 # frozen_string_literal: true
 
 module RScope
-  class Pattern
+  class Video
     def level(value)
       Device.write(prefix, 'LEVEL', value)
       value
     end
 
-    def pattern(value)
-      Device.write(prefix, 'PATTERN', value)
-      value
+    def level?
+      Device.write_r(prefix, 'LEVEL?')
     end
 
     private
 
     def prefix
-      'trigger:pattern:'
+      'trigger:video:'
     end
   end
 end

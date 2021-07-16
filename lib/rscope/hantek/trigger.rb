@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rscope/hantek/trigger/can'
 require 'rscope/hantek/trigger/edge'
 require 'rscope/hantek/trigger/iic'
@@ -6,7 +7,7 @@ require 'rscope/hantek/trigger/interval'
 require 'rscope/hantek/trigger/lin'
 require 'rscope/hantek/trigger/pattern'
 require 'rscope/hantek/trigger/pulse'
-require 'rscope/hantek/trigger/sope'
+require 'rscope/hantek/trigger/slope'
 require 'rscope/hantek/trigger/spi'
 require 'rscope/hantek/trigger/timeout'
 require 'rscope/hantek/trigger/tv'
@@ -58,6 +59,11 @@ module RScope
 
       Device.write(prefix, 'HOLDOFF', value)
     end
+
+    def edge
+      @edge ||= SubCommands::Edge.new
+    end
+
     private
 
     def prefix
