@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-module RScope
+module SCPI
   # Hantek Scope Tested on DSO2D15
   class HantekChannel
-    include RScope::Helpers
+    include SCPI::Helpers
 
     def initialize(channel)
       @chan = channel
@@ -23,7 +23,7 @@ module RScope
     end
 
     def coupling(state)
-      return RScope::InvalidParam unless %i[ac dc gnd].include? state
+      return SCPI::InvalidParam unless %i[ac dc gnd].include? state
 
       Device.write(prefix, "COUPLING #{state.to_s.upcase}")
       state.upcase
@@ -52,8 +52,8 @@ module RScope
     end
 
     def offset(value, suffix = 'V')
-      return RScope::InvalidParam unless %w[V mV].include?(suffix)
-      return RScope::InvalidParam unless value.is_a?(Integer) || value.is_a?(Float)
+      return SCPI::InvalidParam unless %w[V mV].include?(suffix)
+      return SCPI::InvalidParam unless value.is_a?(Integer) || value.is_a?(Float)
 
       Device.write(prefix, "OFFSET #{BigDecimal(value.to_f, 3)} #{suffix}")
       value.to_f
@@ -64,8 +64,8 @@ module RScope
     end
 
     def scale(value, suffix = 'V')
-      return RScope::InvalidParam unless %w[V mV].include?(suffix)
-      return RScope::InvalidParam unless value.is_a?(Integer) || value.is_a?(Float)
+      return SCPI::InvalidParam unless %w[V mV].include?(suffix)
+      return SCPI::InvalidParam unless value.is_a?(Integer) || value.is_a?(Float)
 
       Device.write(prefix, "SCALE #{to_nr3(value.to_f)} #{suffix}")
       value.to_f

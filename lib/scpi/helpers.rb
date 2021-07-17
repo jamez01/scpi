@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RScope
+module SCPI
   # Helper methods
   module Helpers
     def bool_to_state(state)
@@ -10,7 +10,7 @@ module RScope
       when false
         'OFF'
       else
-        raise RScope::InvalidParam
+        raise SCPI::InvalidParam
       end
     end
 

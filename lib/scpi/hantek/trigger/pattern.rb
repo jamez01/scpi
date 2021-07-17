@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RScope
+module SCPI
   class Pattern
     def level(value)
       Device.write(prefix, 'LEVEL', value)

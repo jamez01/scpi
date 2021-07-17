@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'rscope/hantek/acquire'
-require 'rscope/hantek/channel'
-require 'rscope/hantek/timebase'
-require 'rscope/hantek/trigger'
+require 'scpi/hantek/acquire'
+require 'scpi/hantek/channel'
+require 'scpi/hantek/timebase'
+require 'scpi/hantek/trigger'
 
-module RScope
+module SCPI
   class InvalidParam < StandardError; end
 
   # Abstraction class for device

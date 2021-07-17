@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module RScope
-  class Lin
+module SCPI
+  class Uart
     def alevel(value)
       Device.write(prefix, 'ALEVEL', value)
       value
@@ -38,22 +38,13 @@ module RScope
       Device.write_r(prefix, 'DATA?')
     end
 
-    def id(value)
-      Device.write(prefix, 'ID', value)
+    def parity(value)
+      Device.write(prefix, 'PARITY', value)
       value
     end
 
-    def id?
-      Device.write_r(prefix, 'ID?')
-    end
-
-    def idle(value)
-      Device.write(prefix, 'IDLE', value)
-      value
-    end
-
-    def idle?
-      Device.write_r(prefix, 'IDLE?')
+    def parity?
+      Device.write_r(prefix, 'PARITY?')
     end
 
     def source(value)
@@ -61,10 +52,23 @@ module RScope
       value
     end
 
+    def source?
+      Device.write_r(prefix, 'SOURCE?')
+    end
+
+    def width(value)
+      Device.write(prefix, 'WIDTH', value)
+      value
+    end
+
+    def width?
+      Device.write_r(prefix, 'WIDTH?')
+    end
+
     private
 
     def prefix
-      'trigger:lin:'
+      'trigger:uart:'
     end
   end
 end

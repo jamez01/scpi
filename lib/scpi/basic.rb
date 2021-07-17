@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RScope
+module SCPI
   class Basic
     def initialize(adrs = 0)
       Device.open(adrs)

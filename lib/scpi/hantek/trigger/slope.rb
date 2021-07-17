@@ -1,14 +1,23 @@
 # frozen_string_literal: true
 
-module RScope
-  class Pulse
-    def level(value)
-      Device.write(prefix, 'LEVEL', value)
+module SCPI
+  class Slope
+    def alevel(value)
+      Device.write(prefix, 'ALEVEL', value)
       value
     end
 
-    def level?
-      Device.write_r(prefix, 'LEVEL?')
+    def alevel?
+      Device.write_r(prefix, 'ALEVEL?')
+    end
+
+    def blevel(value)
+      Device.write(prefix, 'BLEVEL', value)
+      value
+    end
+
+    def blevel?
+      Device.write_r(prefix, 'BLEVEL?')
     end
 
     def polarity(value)
@@ -50,7 +59,7 @@ module RScope
     private
 
     def prefix
-      'trigger:pulse:'
+      'trigger:slope:'
     end
   end
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RScope
+module SCPI
   class Spi
     def alevel(value)
       Device.write(prefix, 'ALEVEL', value)

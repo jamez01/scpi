@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-module RScope
+module SCPI
   class Acquire
     def points?
       Device.write_r(prefix, 'POINTS?')
     end
 
     def points(value)
-      raise RScope::InvalidParam unless [4000, 40_000, 400_000, 4_000_000, 8_000_000].include? value
+      raise SCPI::InvalidParam unless [4000, 40_000, 400_000, 4_000_000, 8_000_000].include? value
 
       Device.write(prefix, 'POINTS', value)
       value
@@ -18,7 +18,7 @@ module RScope
     end
 
     def type(value)
-      rails RScope::InvalidParam unless %i[normal average peak hres].include? value
+      rails SCPI::InvalidParam unless %i[normal average peak hres].include? value
       Device.write(prefix, 'TYPE', value.to_s.upcase)
       value
     end
@@ -32,7 +32,7 @@ module RScope
     end
 
     def count(value)
-      raise RScope::InvalidParam unless [4, 8, 16, 32, 64, 128].include? value
+      raise SCPI::InvalidParam unless [4, 8, 16, 32, 64, 128].include? value
 
       Device.write(prefix, 'COUNT', value)
       value

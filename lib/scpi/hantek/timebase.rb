@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module RScope
+module SCPI
   class Window
-    include RScope::Helpers
+    include SCPI::Helpers
 
     def enabled?
       state_to_bool Device.write_r(prefix, 'ENABLE?')
@@ -18,7 +18,7 @@ module RScope
     end
 
     def position(value)
-      raise RScope::InvalidParam unless value.is_a?(Integer) || value.is_a?(Float)
+      raise SCPI::InvalidParam unless value.is_a?(Integer) || value.is_a?(Float)
 
       Device.write(prefix, 'POSITION', to_nr3(value.to_f))
       value.to_f
@@ -29,7 +29,7 @@ module RScope
     end
 
     def scale(value)
-      raise RScope::InvalidParam unless value.is_a?(Integer) || value.is_a?(Float)
+      raise SCPI::InvalidParam unless value.is_a?(Integer) || value.is_a?(Float)
 
       Device.write(prefix, 'SCALE', to_nr3(value.to_f))
       value.to_f
@@ -44,7 +44,7 @@ module RScope
   end
 
   class Timebase
-    include RScope::Helpers
+    include SCPI::Helpers
 
     def window
       @window ||= Window.new
@@ -55,7 +55,7 @@ module RScope
     end
 
     def position(value)
-      raise RScope::InvalidParam unless value.is_a?(Integer) || value.is_a?(Float)
+      raise SCPI::InvalidParam unless value.is_a?(Integer) || value.is_a?(Float)
 
       Device.write(prefix, 'POSITION', to_nr3(value.to_f))
       value.to_f
@@ -66,7 +66,7 @@ module RScope
     end
 
     def scale(value)
-      raise RScope::InvalidParam unless value.is_a?(Integer) || value.is_a?(Float)
+      raise SCPI::InvalidParam unless value.is_a?(Integer) || value.is_a?(Float)
 
       Device.write(prefix, 'SCALE', to_nr3(value.to_f))
       value.to_f
@@ -77,7 +77,7 @@ module RScope
     end
 
     def range(value)
-      raise RScope::InvalidParam unless value.is_a?(Integer) || value.is_a?(Float)
+      raise SCPI::InvalidParam unless value.is_a?(Integer) || value.is_a?(Float)
 
       Device.write(prefix, 'RANGE', to_nr3(value.to_f))
       value.to_f
@@ -88,7 +88,7 @@ module RScope
     end
 
     def mode(value)
-      rails RScope::InvalidParam unless %w[MAIN XY ROLL].incude?(value.upcase)
+      rails SCPI::InvalidParam unless %w[MAIN XY ROLL].incude?(value.upcase)
 
       Device.write(prefix, 'MODE', value)
       value

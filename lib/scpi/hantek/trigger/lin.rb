@@ -1,16 +1,7 @@
 # frozen_string_literal: true
 
-module RScope
-  class Iic
-    def adder(value)
-      Device.write(prefix, 'ADDER', value)
-      value
-    end
-
-    def adder?
-      Device.write_r(prefix, 'ADDER?')
-    end
-
+module SCPI
+  class Lin
     def alevel(value)
       Device.write(prefix, 'ALEVEL', value)
       value
@@ -20,13 +11,13 @@ module RScope
       Device.write_r(prefix, 'ALEVEL?')
     end
 
-    def blevel(value)
-      Device.write(prefix, 'BLEVEL', value)
+    def baud(value)
+      Device.write(prefix, 'BAUD', value)
       value
     end
 
-    def blevel?
-      Device.write_r(prefix, 'BLEVEL?')
+    def baud?
+      Device.write_r(prefix, 'BAUD?')
     end
 
     def condition(value)
@@ -47,30 +38,33 @@ module RScope
       Device.write_r(prefix, 'DATA?')
     end
 
-    def scl(value)
-      Device.write(prefix, 'SCL', value)
+    def id(value)
+      Device.write(prefix, 'ID', value)
       value
     end
 
-    def scl(value)
-      Device.write(prefix, 'SCL', value)
+    def id?
+      Device.write_r(prefix, 'ID?')
+    end
+
+    def idle(value)
+      Device.write(prefix, 'IDLE', value)
       value
     end
 
-    def sda(value)
-      Device.write(prefix, 'SDA', value)
-      value
+    def idle?
+      Device.write_r(prefix, 'IDLE?')
     end
 
-    def sda(value)
-      Device.write(prefix, 'SDA', value)
+    def source(value)
+      Device.write(prefix, 'SOURCE', value)
       value
     end
 
     private
 
     def prefix
-      'trigger:iic:'
+      'trigger:lin:'
     end
   end
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RScope
+module SCPI
   module Device
     def open(adrs = 0)
       puts "Opening usbtmc#{adrs}"

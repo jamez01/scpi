@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RScope
+module SCPI
   class Tv
     def line(value)
       Device.write(prefix, 'LINE', value)

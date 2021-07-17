@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RScope
+module SCPI
   module SubCommands
     class Edge
       def level(value)

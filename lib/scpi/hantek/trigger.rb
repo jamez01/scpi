@@ -1,21 +1,21 @@
 # frozen_string_literal: true
 
-require 'rscope/hantek/trigger/can'
-require 'rscope/hantek/trigger/edge'
-require 'rscope/hantek/trigger/iic'
-require 'rscope/hantek/trigger/interval'
-require 'rscope/hantek/trigger/lin'
-require 'rscope/hantek/trigger/pattern'
-require 'rscope/hantek/trigger/pulse'
-require 'rscope/hantek/trigger/slope'
-require 'rscope/hantek/trigger/spi'
-require 'rscope/hantek/trigger/timeout'
-require 'rscope/hantek/trigger/tv'
-require 'rscope/hantek/trigger/uart'
-require 'rscope/hantek/trigger/under_am'
-require 'rscope/hantek/trigger/window'
+require 'scpi/hantek/trigger/can'
+require 'scpi/hantek/trigger/edge'
+require 'scpi/hantek/trigger/iic'
+require 'scpi/hantek/trigger/interval'
+require 'scpi/hantek/trigger/lin'
+require 'scpi/hantek/trigger/pattern'
+require 'scpi/hantek/trigger/pulse'
+require 'scpi/hantek/trigger/slope'
+require 'scpi/hantek/trigger/spi'
+require 'scpi/hantek/trigger/timeout'
+require 'scpi/hantek/trigger/tv'
+require 'scpi/hantek/trigger/uart'
+require 'scpi/hantek/trigger/under_am'
+require 'scpi/hantek/trigger/window'
 
-module RScope
+module SCPI
   class Trigger
     include Helpers
     def force
@@ -28,7 +28,7 @@ module RScope
     end
 
     def mode(value)
-      raise RScope::InvalidParam unless %i[edge pulse tv slope timeout window pattern interval
+      raise SCPI::InvalidParam unless %i[edge pulse tv slope timeout window pattern interval
                                            underthrow uart lin can spi iic].include? value
 
       Device.write(prefix, 'MODE', value.upcase.to_sym)
@@ -44,7 +44,7 @@ module RScope
     end
 
     def sweep(value)
-      raise RScope::InvalidParam unless %i[auto normal single].include? value
+      raise SCPI::InvalidParam unless %i[auto normal single].include? value
 
       Device.write(prefix, 'SWEEP', value.to_s.upcase)
       value
@@ -55,7 +55,7 @@ module RScope
     end
 
     def holdoff(value)
-      raise RScope::InvalidParam unless value.is_a?(Integer) || value.is_a?(Float)
+      raise SCPI::InvalidParam unless value.is_a?(Integer) || value.is_a?(Float)
 
       Device.write(prefix, 'HOLDOFF', value)
     end
